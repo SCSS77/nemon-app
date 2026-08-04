@@ -1,0 +1,10 @@
+version: "3"
+services:
+  web:
+    image: serversideup/php:8.4-cli
+    ports:
+      - "80:8080"
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    command: php -S 0.0.0.0:8080 -t public
