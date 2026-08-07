@@ -4,11 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CalculateEnergyRequest;
 use App\Actions\CalculatePriceIndexedAction;
+use App\Models\Consumption;
+use App\Models\Price;
+use Inertia\Inertia;
 use Illuminate\Http\JsonResponse;
 use Exception;
 
 class EnergyCalculationController extends Controller
 {
+    /**
+     * Renders the main dashboard interface sending all table records.
+     */
+    public function index()
+    {
+        return Inertia::render('Energy/Dashboard', [
+            'consumptions' => Consumption::orderBy('date', 'desc')->get(),
+            'prices' => Price::orderBy('date', 'desc')->get(),
+        ]);
+    }
+
     /**
      * Handles the HTTP request to calculate the indexed price.
      */
