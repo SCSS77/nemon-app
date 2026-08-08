@@ -35,4 +35,8 @@ export default defineConfig({
             ignored: ['**/storage/framework/views/**'],
         },
     },
+    test: {
+        globals: true,
+        environment: 'jsdom',
+    },
 });
