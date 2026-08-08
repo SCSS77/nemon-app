@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Actions;
 
-use Tests\TestCase; // <-- Cambiamos la herencia al TestCase del núcleo de Laravel para arrancar la BD
+use Tests\TestCase;
 use App\Actions\CalculatePriceIndexedAction;
 use App\Models\Consumption;
 use App\Models\Price;
