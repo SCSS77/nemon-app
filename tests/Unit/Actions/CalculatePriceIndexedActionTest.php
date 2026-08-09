@@ -6,10 +6,13 @@ use Tests\TestCase;
 use App\Actions\CalculatePriceIndexedAction;
 use App\Models\Consumption;
 use App\Models\Price;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Exception;
 
 class CalculatePriceIndexedActionTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * Test that the weighted indexed price calculation computes the 25 hours correctly.
      */
@@ -18,10 +21,6 @@ class CalculatePriceIndexedActionTest extends TestCase
         // 1. ARRANGEMENT
         $date = '2025-03-01';
         
-        // Clean up any existing records for this specific date before starting
-        Consumption::where('date', $date)->delete();
-        Price::where('date', $date)->delete();
-
         // Setup flat consumption metrics of 2.0 units for all 25 hours
         $consumptionData = ['date' => $date];
         for ($h = 1; $h <= 25; $h++) { 
@@ -45,10 +44,6 @@ class CalculatePriceIndexedActionTest extends TestCase
 
         // 3. ASSERT
         $this->assertEquals(2.61, round($result, 2));
-
-        // Clean up database records after running the integration test
-        Consumption::where('date', $date)->delete();
-        Price::where('date', $date)->delete();
     }
 
     /**
