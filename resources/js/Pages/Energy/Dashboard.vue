@@ -35,46 +35,50 @@ const hours = Array.from({ length: 25 }, (_, i) => `h${i + 1}`);
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
         <div class="md:col-span-2 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h2 class="text-lg font-semibold text-gray-700 mb-4 font-medium">Indexed Price Calculator</h2>
+          <h2 class="text-lg font-semibold text-gray-800 mb-5 tracking-tight">Indexed Price Calculator</h2>
           
           <form @submit.prevent="calculate" class="space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-sm font-medium text-gray-600 mb-1">Start Date</label>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Start Date</label>
                 <input 
                   v-model="startDate" 
                   type="date" 
                   required
-                  class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm"
+                  class="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-gray-700 text-sm transition-all focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100 outline-none cursor-pointer"
                 />
               </div>
               <div>
-                <label class="block text-sm font-medium text-gray-600 mb-1">End Date</label>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">End Date</label>
                 <input 
                   v-model="endDate" 
                   type="date" 
                   required
-                  class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm"
+                  class="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-gray-700 text-sm transition-all focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100 outline-none cursor-pointer"
                 />
               </div>
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-600 mb-1">Mathematical Formula</label>
+              <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Mathematical Formula</label>
               <input 
                 v-model="formula" 
                 type="text" 
                 required
                 placeholder="e.g. ([OMIE_MD] * 1.1) + 2.5"
-                class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm font-mono"
+                class="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-gray-800 text-sm font-mono tracking-wide transition-all focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100 outline-none"
               />
-              <p class="text-xs text-gray-400 mt-1">The formula tag <span class="font-mono bg-gray-100 px-1 rounded">[OMIE_MD]</span> is mandatory and will be replaced dynamically per hour.</p>
+              <p class="text-xs text-gray-400 mt-2 flex items-center gap-1 flex-wrap">
+                <span>The formula tag</span>
+                <span class="font-mono bg-blue-50 text-blue-600 font-semibold px-1.5 py-0.5 rounded text-[11px] border border-blue-100">[OMIE_MD]</span>
+                <span>is mandatory and will be replaced dynamically per hour.</span>
+              </p>
             </div>
 
             <button 
               type="submit" 
               :disabled="isLoading"
-              class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-150 text-sm disabled:opacity-50"
+              class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-5 rounded-md shadow-sm transition-all duration-150 text-sm disabled:opacity-50 tracking-wide mt-2"
             >
               {{ isLoading ? 'Computing...' : 'Calculate Indexed Price' }}
             </button>
